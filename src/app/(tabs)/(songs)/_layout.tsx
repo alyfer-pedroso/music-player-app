@@ -10,6 +10,7 @@ const SongsScreenLayout = () => {
 			<Stack>
 				<Stack.Screen
 					name="index"
+					// options={{ headerShown: false }}
 					options={{ ...StackScreenWithSearchBar, headerTitle: 'Songs' }}
 				/>
 			</Stack>
