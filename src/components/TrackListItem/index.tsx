@@ -18,7 +18,7 @@ export const TrackListItem: FC<TrackListItemProps> = ({ track }) => {
 				<View>
 					<Image
 						source={{
-							uri: track?.image ?? unknownTrackImageUrl,
+							uri: track?.artwork ?? unknownTrackImageUrl,
 						}}
 						priority="normal"
 						style={{

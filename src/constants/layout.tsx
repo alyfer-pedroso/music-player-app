@@ -23,7 +23,7 @@ export const StackScreenWithSearchBar: NativeStackNavigationOptions = {
 	headerBlurEffect: 'prominent',
 	headerShadowVisible: false,
 	headerTitleStyle: {
-		fontSize: 35,
+		fontSize: 30,
 		fontWeight: '700',
 	},
 };

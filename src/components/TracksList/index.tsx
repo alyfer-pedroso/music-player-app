@@ -12,9 +12,7 @@ export const TracksList: FC<TracksListItemProps> = ({ tracks }) => {
 			ItemSeparatorComponent={ItemDivider}
 			ListFooterComponent={ItemDivider}
 			contentContainerStyle={{ paddingBottom: 168 }}
-			renderItem={({ item }) => (
-				<TrackListItem track={{ ...item, image: item?.artwork }} />
-			)}
+			renderItem={({ item: track }) => <TrackListItem track={track} />}
 			scrollEnabled={false}
 		/>
 	);
