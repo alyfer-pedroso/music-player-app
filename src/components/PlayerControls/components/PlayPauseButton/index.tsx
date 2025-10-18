@@ -7,7 +7,10 @@ import { colors } from '@/constants/tokens';
 
 import { PlayerButtonProps } from '../../types';
 
-export const PlayPauseButton: FC<PlayerButtonProps> = ({ style, iconSize }) => {
+export const PlayPauseButton: FC<PlayerButtonProps> = ({
+	style,
+	iconSize = 48,
+}) => {
 	const { playing } = useIsPlaying();
 
 	return (

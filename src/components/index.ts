@@ -7,3 +7,4 @@ export * from './MovingText';
 export * from './PlayerControls';
 export * from './PlayerProgressBar';
 export * from './PlayerVolumeBar';
+export * from './PlayerRepeatToggle';

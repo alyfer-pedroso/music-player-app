@@ -8,3 +8,5 @@ export * from './useGesturePan';
 export * from './usePlayerProgressBar';
 export * from './usePlayerVolumeBar';
 export * from './useTrackPlayerVolume';
+export * from './useTrackPlayerRepeatMode';
+export * from './usePlayerRepeatToggle';

@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureDetector } from 'react-native-gesture-handler';
 
 import { Image } from 'expo-image';
+import { FontAwesome } from '@expo/vector-icons';
 
 import { useGesturePan } from '@/hooks';
 import {
@@ -14,12 +15,12 @@ import {
 	MovingText,
 	PlayerControl,
 	PlayerProgressBar,
+	PlayerRepeatToggle,
 	PlayerVolumeBar,
 } from '@/components';
 import { colors, fontSize, screenPadding } from '@/constants/tokens';
-import { unknownArtistImageUrl } from '@/constants/images';
+import { unknownTrackImageUrl } from '@/constants/images';
 import { defaultStyles, utilsStyles } from '@/styles';
-import { FontAwesome } from '@expo/vector-icons';
 
 const PlayerScreen: FC = () => {
 	const activeTrack = useActiveTrack();
@@ -48,7 +49,7 @@ const PlayerScreen: FC = () => {
 						<View style={styles.artworkImageContainer}>
 							<Image
 								source={{
-									uri: activeTrack?.artwork ?? unknownArtistImageUrl,
+									uri: activeTrack?.artwork ?? unknownTrackImageUrl,
 								}}
 								priority={'high'}
 								contentFit="cover"
