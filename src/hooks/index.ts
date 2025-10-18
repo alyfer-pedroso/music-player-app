@@ -1,2 +1,4 @@
 export * from './useNavigationSearch';
 export * from './useSetupTrackPlayer';
+export * from './useSongs';
+export * from './useLogTrackPlayerState';

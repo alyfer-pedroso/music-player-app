@@ -1,10 +1,9 @@
 import { ScrollView, View } from 'react-native';
 
-import { screenPadding } from '@/constants/tokens';
+import { useSongs } from '@/hooks';
 import { SearchInput, TracksList } from '@/components';
+import { screenPadding } from '@/constants/tokens';
 import { defaultStyles } from '@/styles';
-
-import { useSongs } from './hooks';
 
 const SongsScreen = () => {
 	const { states, actions, library } = useSongs();

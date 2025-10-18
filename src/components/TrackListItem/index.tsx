@@ -1,7 +1,9 @@
 import { FC } from 'react';
-
+import { useActiveTrack } from 'react-native-track-player';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+
 import { Image } from 'expo-image';
+import { Entypo } from '@expo/vector-icons';
 
 import { unknownTrackImageUrl } from '@/constants/images';
 import { colors, fontSize } from '@/constants/tokens';
@@ -9,11 +11,14 @@ import { defaultStyles } from '@/styles';
 
 import { TrackListItemProps } from './types';
 
-export const TrackListItem: FC<TrackListItemProps> = ({ track }) => {
-	const isActiveTrack = false;
+export const TrackListItem: FC<TrackListItemProps> = ({
+	track,
+	onTrackSelect: handleTrackSelect,
+}) => {
+	const isActiveTrack = useActiveTrack()?.url === track?.url;
 
 	return (
-		<TouchableHighlight>
+		<TouchableHighlight onPress={() => handleTrackSelect(track)}>
 			<View style={styles.trackItemContainer}>
 				<View>
 					<Image
@@ -28,22 +33,33 @@ export const TrackListItem: FC<TrackListItemProps> = ({ track }) => {
 					/>
 				</View>
 
-				<View style={{ width: '100%' }}>
-					<Text
-						numberOfLines={1}
-						style={{
-							...styles.trackTitleText,
-							color: isActiveTrack ? colors.primary : colors.text,
-						}}
-					>
-						{track.title}
-					</Text>
-
-					{track?.artist && (
-						<Text numberOfLines={1} style={styles.trackArtistText}>
-							{track.artist}
+				<View
+					style={{
+						flex: 1,
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
+				>
+					<View style={{ width: '100%' }}>
+						<Text
+							numberOfLines={1}
+							style={{
+								...styles.trackTitleText,
+								color: isActiveTrack ? colors.primary : colors.text,
+							}}
+						>
+							{track.title}
 						</Text>
-					)}
+
+						{track?.artist && (
+							<Text numberOfLines={1} style={styles.trackArtistText}>
+								{track.artist}
+							</Text>
+						)}
+					</View>
+
+					<Entypo name="dots-three-horizontal" size={18} color={colors.icon} />
 				</View>
 			</View>
 		</TouchableHighlight>
