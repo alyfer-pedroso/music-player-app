@@ -7,7 +7,7 @@ import { ItemDivider } from '../ItemDivider';
 import { ListEmptyComponent, TrackListItem } from './components';
 import { TracksListItemProps } from './types';
 
-export const TracksList: FC<TracksListItemProps> = ({ tracks }) => {
+export const TracksList: FC<TracksListItemProps> = ({ tracks, ...props }) => {
 	const handleTrackSelect = async (track: Track) => {
 		await TrackPlayer.load(track);
 		await TrackPlayer.play();
@@ -24,6 +24,7 @@ export const TracksList: FC<TracksListItemProps> = ({ tracks }) => {
 				<TrackListItem track={track} onTrackSelect={handleTrackSelect} />
 			)}
 			scrollEnabled={false}
+			{...props}
 		/>
 	);
 };
