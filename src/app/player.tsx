@@ -7,9 +7,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureDetector } from 'react-native-gesture-handler';
 
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { useGesturePan } from '@/hooks';
+import { useGesturePan, usePlayerBackground } from '@/hooks';
 import {
 	DismissPlayerSymbol,
 	MovingText,
@@ -24,6 +25,9 @@ import { defaultStyles, utilsStyles } from '@/styles';
 
 const PlayerScreen: FC = () => {
 	const activeTrack = useActiveTrack();
+	const { imageColors } = usePlayerBackground(
+		activeTrack?.artwork ?? unknownTrackImageUrl,
+	);
 
 	const { pan, animatedStyle } = useGesturePan();
 	const { top, bottom } = useSafeAreaInsets();
@@ -42,71 +46,82 @@ const PlayerScreen: FC = () => {
 					/>
 				</Animated.View>
 			) : (
-				<Animated.View style={[styles.overlayContainer, animatedStyle]}>
-					<DismissPlayerSymbol />
+				<LinearGradient
+					style={{ flex: 1 }}
+					colors={
+						imageColors
+							? [imageColors.background, imageColors.primary]
+							: [colors.background, colors.background]
+					}
+				>
+					<Animated.View style={[styles.overlayContainer, animatedStyle]}>
+						<DismissPlayerSymbol />
 
-					<View style={{ flex: 1, marginTop: top + 70, marginBottom: bottom }}>
-						<View style={styles.artworkImageContainer}>
-							<Image
-								source={{
-									uri: activeTrack?.artwork ?? unknownTrackImageUrl,
-								}}
-								priority={'high'}
-								contentFit="cover"
-								style={styles.artworkImage}
-							/>
-						</View>
+						<View
+							style={{ flex: 1, marginTop: top + 70, marginBottom: bottom }}
+						>
+							<View style={styles.artworkImageContainer}>
+								<Image
+									source={{
+										uri: activeTrack?.artwork ?? unknownTrackImageUrl,
+									}}
+									priority={'high'}
+									contentFit="cover"
+									style={styles.artworkImage}
+								/>
+							</View>
 
-						<View style={{ flex: 1 }}>
-							<View style={{ marginTop: 'auto' }}>
-								<View style={{ height: 60 }}>
-									<View
-										style={{
-											flexDirection: 'row',
-											justifyContent: 'space-between',
-											alignItems: 'center',
-										}}
-									>
-										<View style={styles.trackTitleContainer}>
-											<MovingText
-												text={activeTrack?.title ?? ''}
-												animationThreshold={30}
-												style={styles.trackTitleText}
+							<View style={{ flex: 1 }}>
+								<View style={{ marginTop: 'auto' }}>
+									<View style={{ height: 60 }}>
+										<View
+											style={{
+												flexDirection: 'row',
+												justifyContent: 'space-between',
+												alignItems: 'center',
+											}}
+										>
+											<View style={styles.trackTitleContainer}>
+												<MovingText
+													text={activeTrack?.title ?? ''}
+													animationThreshold={30}
+													style={styles.trackTitleText}
+												/>
+											</View>
+
+											<FontAwesome
+												name={isFavorite ? 'heart' : 'heart-o'}
+												size={20}
+												color={isFavorite ? colors.primary : colors.icon}
+												style={{ marginHorizontal: 14 }}
+												onPress={toggleFavorite}
 											/>
 										</View>
 
-										<FontAwesome
-											name={isFavorite ? 'heart' : 'heart-o'}
-											size={20}
-											color={isFavorite ? colors.primary : colors.icon}
-											style={{ marginHorizontal: 14 }}
-											onPress={toggleFavorite}
-										/>
+										{activeTrack?.artist && (
+											<Text
+												numberOfLines={1}
+												style={[styles.trackArtistText, { marginTop: 6 }]}
+											>
+												{activeTrack?.artist}
+											</Text>
+										)}
 									</View>
 
-									{activeTrack?.artist && (
-										<Text
-											numberOfLines={1}
-											style={[styles.trackArtistText, { marginTop: 6 }]}
-										>
-											{activeTrack?.artist}
-										</Text>
-									)}
+									<PlayerProgressBar style={{ marginTop: 22 }} />
+									<PlayerControl style={{ marginTop: 40 }} />
 								</View>
 
-								<PlayerProgressBar style={{ marginTop: 22 }} />
-								<PlayerControl style={{ marginTop: 40 }} />
-							</View>
-
-							<PlayerVolumeBar
-								style={{ marginTop: 'auto', marginBottom: 30 }}
-							/>
-							<View style={utilsStyles.centeredRow}>
-								<PlayerRepeatToggle size={30} style={{ marginBottom: 6 }} />
+								<PlayerVolumeBar
+									style={{ marginTop: 'auto', marginBottom: 30 }}
+								/>
+								<View style={utilsStyles.centeredRow}>
+									<PlayerRepeatToggle size={30} style={{ marginBottom: 6 }} />
+								</View>
 							</View>
 						</View>
-					</View>
-				</Animated.View>
+					</Animated.View>
+				</LinearGradient>
 			)}
 		</GestureDetector>
 	);
@@ -116,7 +131,6 @@ const styles = StyleSheet.create({
 	overlayContainer: {
 		...defaultStyles.container,
 		paddingHorizontal: screenPadding.horizontal,
-		// backgroundColor: 'rgba(0,0,0,0.5)',
 		backgroundColor: 'rgba(37, 37, 37, 1)',
 	},
 	artworkImageContainer: {
