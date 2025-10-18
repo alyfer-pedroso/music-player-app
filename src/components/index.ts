@@ -2,3 +2,8 @@ export * from './TracksList';
 export * from './ItemDivider';
 export * from './SearchInput';
 export * from './FloatingPlayer';
+export * from './DismissPlayerSymbol';
+export * from './MovingText';
+export * from './PlayerControls';
+export * from './PlayerProgressBar';
+export * from './PlayerVolumeBar';

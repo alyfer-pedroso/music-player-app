@@ -4,3 +4,7 @@ export * from './useSongs';
 export * from './useLogTrackPlayerState';
 export * from './useLastActiveTrack';
 export * from './useMovingText';
+export * from './useGesturePan';
+export * from './usePlayerProgressBar';
+export * from './usePlayerVolumeBar';
+export * from './useTrackPlayerVolume';
