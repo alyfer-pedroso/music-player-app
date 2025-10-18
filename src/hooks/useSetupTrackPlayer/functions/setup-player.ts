@@ -1,4 +1,4 @@
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { RepeatMode } from 'react-native-track-player';
 
 export const setupPlayer = async () => {
 	try {
@@ -7,6 +7,7 @@ export const setupPlayer = async () => {
 		});
 
 		await TrackPlayer.setVolume(0.5);
+		await TrackPlayer.setRepeatMode(RepeatMode.Queue);
 	} catch (error) {
 		console.log('Error setting up TrackPlayer:', error);
 	}
