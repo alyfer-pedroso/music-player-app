@@ -11,3 +11,5 @@ export * from './useTrackPlayerVolume';
 export * from './useTrackPlayerRepeatMode';
 export * from './usePlayerRepeatToggle';
 export * from './usePlayerBackground';
+export * from './useTracks';
+export * from './useFavorites';
