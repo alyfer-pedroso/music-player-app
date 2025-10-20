@@ -1,9 +1,12 @@
 import { useMemo, useState } from 'react';
 import { Track } from 'react-native-track-player';
 
-import library from '@/assets/data/library.json';
+import { useTracks } from '../useTracks';
 
-export function useSongs(tracks: Track[] = library) {
+export function useSongs(library?: Track[]) {
+	const tracksToUse = useTracks();
+	const tracks = useMemo(() => library || tracksToUse, [library, tracksToUse]);
+
 	const [search, setSearch] = useState('');
 
 	const filteredTracks = useMemo(() => {

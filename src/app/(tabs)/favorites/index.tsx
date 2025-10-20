@@ -1,17 +1,17 @@
 import { ScrollView, View } from 'react-native';
 
-// import { useFavorites, useSongs } from '@/hooks';
+import { useFavorites, useSongs } from '@/hooks';
 import { SearchInput, TracksList } from '@/components';
 import { screenPadding } from '@/constants/tokens';
 import { defaultStyles } from '@/styles';
 
 const FavoritesScreen = () => {
-	// const { favorites } = useFavorites();
-	// const { states, actions, library } = useSongs(favorites);
+	const { favorites } = useFavorites();
+	const { states, actions, library } = useSongs(favorites);
 
 	return (
 		<View style={defaultStyles.container}>
-			{/* <View
+			<View
 				style={{
 					paddingHorizontal: screenPadding.horizontal,
 					paddingVertical: 12,
@@ -28,7 +28,7 @@ const FavoritesScreen = () => {
 				style={{ paddingHorizontal: screenPadding.horizontal }}
 			>
 				<TracksList tracks={library} />
-			</ScrollView> */}
+			</ScrollView>
 		</View>
 	);
 };
