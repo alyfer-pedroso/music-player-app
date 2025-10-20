@@ -6,4 +6,5 @@ import { QueueIds } from '@/helpers';
 export interface TracksListItemProps extends Partial<FlatListProps<Track>> {
 	tracks: Track[];
 	id: QueueIds | string;
+	hideQueueControls?: boolean;
 }

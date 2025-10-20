@@ -12,6 +12,7 @@ import { QueueControls } from '../QueueControls';
 export const TracksList: FC<TracksListItemProps> = ({
 	id,
 	tracks,
+	hideQueueControls = false,
 	...props
 }) => {
 	const { actions } = useTracksList({ id, tracks });
@@ -20,12 +21,14 @@ export const TracksList: FC<TracksListItemProps> = ({
 		<FlatList
 			data={tracks}
 			ItemSeparatorComponent={ItemDivider}
-			ListHeaderComponent={
-				<QueueControls tracks={tracks} style={{ paddingBottom: 25 }} />
-			}
-			ListFooterComponent={ItemDivider}
 			contentContainerStyle={{ paddingBottom: 168 }}
+			ListFooterComponent={<ItemDivider />}
 			ListEmptyComponent={<ListEmptyComponent />}
+			ListHeaderComponent={
+				!hideQueueControls ? (
+					<QueueControls tracks={tracks} style={{ paddingBottom: 25 }} />
+				) : undefined
+			}
 			renderItem={({ item: track }) => (
 				<TrackListItem
 					track={track}
