@@ -15,3 +15,4 @@ export * from './useTracks';
 export * from './useFavorites';
 export * from './useQueue';
 export * from './useTracksList';
+export * from './useQueueControls';

@@ -7,6 +7,7 @@ import { ItemDivider } from '../ItemDivider';
 
 import { ListEmptyComponent, TrackListItem } from './components';
 import { TracksListItemProps } from './types';
+import { QueueControls } from '../QueueControls';
 
 export const TracksList: FC<TracksListItemProps> = ({
 	id,
@@ -19,6 +20,9 @@ export const TracksList: FC<TracksListItemProps> = ({
 		<FlatList
 			data={tracks}
 			ItemSeparatorComponent={ItemDivider}
+			ListHeaderComponent={
+				<QueueControls tracks={tracks} style={{ paddingBottom: 25 }} />
+			}
 			ListFooterComponent={ItemDivider}
 			contentContainerStyle={{ paddingBottom: 168 }}
 			ListEmptyComponent={<ListEmptyComponent />}
