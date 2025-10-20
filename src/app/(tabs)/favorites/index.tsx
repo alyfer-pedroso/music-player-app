@@ -9,7 +9,7 @@ import { QueueIds } from '@/helpers';
 
 const FavoritesScreen = () => {
 	const { favorites } = useFavorites();
-	const { states, actions, library } = useSongs(favorites);
+	const { states, actions, library } = useSongs({ library: favorites });
 
 	return (
 		<View style={defaultStyles.container}>

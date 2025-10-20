@@ -66,7 +66,7 @@ const PlayerScreen: FC = () => {
 										source={{
 											uri: activeTrack?.artwork ?? unknownTrackImageUrl,
 										}}
-										priority={'high'}
+										priority="high"
 										contentFit="cover"
 										style={styles.artworkImage}
 									/>

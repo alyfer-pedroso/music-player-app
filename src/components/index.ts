@@ -9,3 +9,4 @@ export * from './PlayerProgressBar';
 export * from './PlayerVolumeBar';
 export * from './PlayerRepeatToggle';
 export * from './QueueControls';
+export * from './ArtistsList';

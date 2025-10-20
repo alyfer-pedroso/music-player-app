@@ -1,8 +1,15 @@
-import { utilsStyles } from '@/styles';
+import { FC } from 'react';
 import { View } from 'react-native';
 
-export const ItemDivider = () => (
+import { utilsStyles } from '@/styles';
+
+import { ItemDividerProps } from './types';
+
+export const ItemDivider: FC<ItemDividerProps> = ({ style }) => (
 	<View
-		style={{ ...utilsStyles.itemSeparator, marginVertical: 9, marginLeft: 60 }}
+		style={[
+			{ ...utilsStyles.itemSeparator, marginVertical: 9, marginLeft: 60 },
+			style,
+		]}
 	/>
 );
