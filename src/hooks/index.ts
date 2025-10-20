@@ -13,3 +13,5 @@ export * from './usePlayerRepeatToggle';
 export * from './usePlayerBackground';
 export * from './useTracks';
 export * from './useFavorites';
+export * from './useQueue';
+export * from './useTracksList';

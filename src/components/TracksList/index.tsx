@@ -1,17 +1,19 @@
 import { FC } from 'react';
 import { FlatList } from 'react-native';
-import TrackPlayer, { Track } from 'react-native-track-player';
+
+import { useTracksList } from '@/hooks';
 
 import { ItemDivider } from '../ItemDivider';
 
 import { ListEmptyComponent, TrackListItem } from './components';
 import { TracksListItemProps } from './types';
 
-export const TracksList: FC<TracksListItemProps> = ({ tracks, ...props }) => {
-	const handleTrackSelect = async (track: Track) => {
-		await TrackPlayer.load(track);
-		await TrackPlayer.play();
-	};
+export const TracksList: FC<TracksListItemProps> = ({
+	id,
+	tracks,
+	...props
+}) => {
+	const { actions } = useTracksList({ id, tracks });
 
 	return (
 		<FlatList
@@ -21,7 +23,10 @@ export const TracksList: FC<TracksListItemProps> = ({ tracks, ...props }) => {
 			contentContainerStyle={{ paddingBottom: 168 }}
 			ListEmptyComponent={<ListEmptyComponent />}
 			renderItem={({ item: track }) => (
-				<TrackListItem track={track} onTrackSelect={handleTrackSelect} />
+				<TrackListItem
+					track={track}
+					onTrackSelect={actions.handleTrackSelect}
+				/>
 			)}
 			scrollEnabled={false}
 			{...props}

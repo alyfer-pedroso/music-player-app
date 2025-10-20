@@ -1,0 +1,6 @@
+export enum QueueIds {
+	FAVORITES = 'FAVORITES',
+	PLAYLISTS = 'PLAYLISTS',
+	SONGS = 'SONGS',
+	ARTISTS = 'ARTISTS',
+}

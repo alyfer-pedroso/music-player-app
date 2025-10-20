@@ -1,9 +1,11 @@
 import { ScrollView, View } from 'react-native';
 
 import { useSongs } from '@/hooks';
-import { SearchInput, TracksList } from '@/components';
+import { generateTracksListId } from '@/functions';
 import { screenPadding } from '@/constants/tokens';
+import { SearchInput, TracksList } from '@/components';
 import { defaultStyles } from '@/styles';
+import { QueueIds } from '@/helpers';
 
 const SongsScreen = () => {
 	const { states, actions, library } = useSongs();
@@ -26,7 +28,10 @@ const SongsScreen = () => {
 				contentInsetAdjustmentBehavior="automatic"
 				style={{ paddingHorizontal: screenPadding.horizontal }}
 			>
-				<TracksList tracks={library} />
+				<TracksList
+					id={generateTracksListId(QueueIds.SONGS, states.search)}
+					tracks={library}
+				/>
 			</ScrollView>
 		</View>
 	);

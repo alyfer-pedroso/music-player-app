@@ -1,9 +1,11 @@
 import { ScrollView, View } from 'react-native';
 
 import { useFavorites, useSongs } from '@/hooks';
-import { SearchInput, TracksList } from '@/components';
+import { generateTracksListId } from '@/functions';
 import { screenPadding } from '@/constants/tokens';
+import { SearchInput, TracksList } from '@/components';
 import { defaultStyles } from '@/styles';
+import { QueueIds } from '@/helpers';
 
 const FavoritesScreen = () => {
 	const { favorites } = useFavorites();
@@ -27,7 +29,10 @@ const FavoritesScreen = () => {
 				contentInsetAdjustmentBehavior="automatic"
 				style={{ paddingHorizontal: screenPadding.horizontal }}
 			>
-				<TracksList tracks={library} />
+				<TracksList
+					id={generateTracksListId(QueueIds.FAVORITES, states.search)}
+					tracks={library}
+				/>
 			</ScrollView>
 		</View>
 	);
