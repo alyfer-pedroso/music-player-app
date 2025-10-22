@@ -33,6 +33,7 @@ const PlaylistDetailsScreen: FC = () => {
 									priority="high"
 									source={{ uri: unknownArtistImageUrl }}
 									style={styles.playlistImage}
+									contentFit="cover"
 								/>
 							</View>
 
@@ -65,7 +66,6 @@ const styles = StyleSheet.create({
 	playlistImage: {
 		width: '60%',
 		height: '100%',
-		resizeMode: 'cover',
 		borderRadius: 12,
 	},
 	playlistNameText: {

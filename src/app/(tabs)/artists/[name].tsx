@@ -33,6 +33,7 @@ const ArtistDetailsScreen: FC = () => {
 									priority="high"
 									source={{ uri: unknownArtistImageUrl }}
 									style={styles.artistImage}
+									contentFit="cover"
 								/>
 							</View>
 
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
 	artistImage: {
 		width: '60%',
 		height: '100%',
-		resizeMode: 'cover',
+
 		borderRadius: 128,
 	},
 	artistNameText: {

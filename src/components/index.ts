@@ -11,3 +11,4 @@ export * from './PlayerRepeatToggle';
 export * from './QueueControls';
 export * from './ArtistsList';
 export * from './PlaylistsList';
+export * from './TrackShortcutsMenu';

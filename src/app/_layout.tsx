@@ -34,6 +34,7 @@ const RootNavigation = () => {
 	return (
 		<Stack>
 			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+			<Stack.Screen name="(modals)" options={{ headerShown: false }} />
 
 			<Stack.Screen
 				name="player"
