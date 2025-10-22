@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import { Stack } from 'expo-router';
 
 import { StackScreenWithSearchBar } from '@/constants/layout';
+import { colors } from '@/constants/tokens';
 import { defaultStyles } from '@/styles';
 
 const PlaylistsScreenLayout = () => {
@@ -11,6 +12,16 @@ const PlaylistsScreenLayout = () => {
 				<Stack.Screen
 					name="index"
 					options={{ ...StackScreenWithSearchBar, headerTitle: 'Playlists' }}
+				/>
+
+				<Stack.Screen
+					name="[name]"
+					options={{
+						headerTitle: 'Playlists',
+						headerBackVisible: true,
+						headerStyle: { backgroundColor: colors.background },
+						headerTintColor: colors.primary,
+					}}
 				/>
 			</Stack>
 		</View>

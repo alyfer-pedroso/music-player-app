@@ -19,3 +19,6 @@ export * from './useQueueControls';
 export * from './useArtists';
 export * from './useSearchArtists';
 export * from './useArtistDetails';
+export * from './useSearchPlaylists';
+export * from './usePlaylists';
+export * from './usePlaylistDetails';
