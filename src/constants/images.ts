@@ -1,7 +1,7 @@
 import { Image } from 'react-native';
 
-import unknownArtistImage from '@/assets/unknown_artist.png';
-import unknownTrackImage from '@/assets/unknown_track.png';
+import unknownArtistImage from '@/assets/unknownartist.png';
+import unknownTrackImage from '@/assets/unknowntrack.png';
 
 export const unknownArtistImageUrl =
 	Image.resolveAssetSource(unknownArtistImage).uri;
