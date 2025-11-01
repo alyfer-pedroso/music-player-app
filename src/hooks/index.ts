@@ -25,3 +25,4 @@ export * from './usePlaylistDetails';
 export * from './usePlayerFavorite';
 export * from './useAddToPlaylist';
 export * from './useTrackShortcutMenu';
+export * from './useAndroidPermissions';

@@ -24,7 +24,15 @@
 			"edgeToEdgeEnabled": true,
 			"predictiveBackGestureEnabled": false,
 			"package": "com.alyfer.musicplayer",
-			"userInterfaceStyle": "dark"
+			"userInterfaceStyle": "dark",
+			"permissions": [
+				"android.permission.FOREGROUND_SERVICE",
+				"android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+				"android.permission.WAKE_LOCK",
+				"android.permission.POST_NOTIFICATIONS",
+				"android.permission.SYSTEM_ALERT_WINDOW",
+				"com.android.launcher.permission.INSTALL_SHORTCUT"
+			]
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"

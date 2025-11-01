@@ -5,12 +5,18 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Stack, SplashScreen } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { useLogTrackPlayerState, useSetupTrackPlayer } from '@/hooks';
+import {
+	useAndroidPermissions,
+	useLogTrackPlayerState,
+	useSetupTrackPlayer,
+} from '@/hooks';
 import { colors } from '@/constants/tokens';
 
 SplashScreen.preventAutoHideAsync();
 
 const App = () => {
+	useAndroidPermissions();
+
 	const handleTrackPlayerLoaded = useCallback(() => {
 		SplashScreen.hideAsync();
 	}, []);
