@@ -8,6 +8,7 @@ export interface IUseLibraryStoreStates {
 export interface IUseLibraryStoreActions {
 	toggleTrackFavorite: (track: Track) => void;
 	addToPlaylist: (track: Track, playlistName: string) => void;
+	removeFromPlaylist: (track: Track, playlistName: string) => void;
 }
 
 export type IUseLibraryStore = IUseLibraryStoreStates & IUseLibraryStoreActions;

@@ -8,7 +8,10 @@ import {
 } from './components';
 import { PlaylistsListProps } from './types';
 
-export const PlaylistsList: FC<PlaylistsListProps> = ({ playlists }) => {
+export const PlaylistsList: FC<PlaylistsListProps> = ({
+	playlists,
+	onPlaylistPress,
+}) => {
 	return (
 		<FlatList
 			ListFooterComponent={ItemSeparator}
@@ -18,7 +21,10 @@ export const PlaylistsList: FC<PlaylistsListProps> = ({ playlists }) => {
 			scrollEnabled={false}
 			data={playlists}
 			renderItem={({ item: playlist }) => (
-				<PlaylistListItem playlist={playlist} />
+				<PlaylistListItem
+					playlist={playlist}
+					onPlaylistPress={onPlaylistPress}
+				/>
 			)}
 		/>
 	);

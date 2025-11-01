@@ -10,7 +10,7 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { useGesturePan, usePlayerBackground } from '@/hooks';
+import { useGesturePan, usePlayerBackground, usePlayerFavorite } from '@/hooks';
 import {
 	DismissPlayerSymbol,
 	MovingText,
@@ -25,16 +25,14 @@ import { defaultStyles, utilsStyles } from '@/styles';
 
 const PlayerScreen: FC = () => {
 	const activeTrack = useActiveTrack();
-	const { imageColors } = usePlayerBackground(
-		activeTrack?.artwork ?? unknownTrackImageUrl,
-	);
 
 	const { pan, animatedStyle } = useGesturePan();
 	const { top, bottom } = useSafeAreaInsets();
 
-	const isFavorite = false;
-
-	const toggleFavorite = () => {};
+	const { isFavorite, toggleFavorite } = usePlayerFavorite();
+	const { imageColors } = usePlayerBackground(
+		activeTrack?.artwork ?? unknownTrackImageUrl,
+	);
 
 	const gradientColors = useMemo(() => {
 		if (imageColors?.background && imageColors?.primary) {

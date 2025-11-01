@@ -6,8 +6,8 @@ import { usePlaylists } from '../usePlaylists';
 export function usePlaylistDetails() {
 	const { playlists } = usePlaylists();
 
-	const { name: playlistName } = useLocalSearchParams<{ name: string }>();
-	const playlist = playlists.find(({ name }) => name === playlistName);
+	const { p_name } = useLocalSearchParams<{ p_name: string }>();
+	const playlist = playlists.find(({ name }) => name === p_name);
 
 	const { states, actions, library } = useSongs({
 		library: playlist?.tracks ?? [],

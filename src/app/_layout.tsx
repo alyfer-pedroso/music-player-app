@@ -1,11 +1,12 @@
 import { useCallback } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { Stack, SplashScreen } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { useLogTrackPlayerState, useSetupTrackPlayer } from '@/hooks';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { colors } from '@/constants/tokens';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,7 +35,6 @@ const RootNavigation = () => {
 	return (
 		<Stack>
 			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-			<Stack.Screen name="(modals)" options={{ headerShown: false }} />
 
 			<Stack.Screen
 				name="player"
@@ -42,6 +42,18 @@ const RootNavigation = () => {
 					presentation: 'transparentModal',
 					animation: 'slide_from_bottom',
 					headerShown: false,
+				}}
+			/>
+
+			<Stack.Screen
+				name="(modals)/add-to-playlist"
+				options={{
+					presentation: 'modal',
+					animation: 'fade_from_bottom',
+					headerTitle: 'Add to playlists',
+					headerBackVisible: true,
+					headerStyle: { backgroundColor: colors.background },
+					headerTintColor: colors.primary,
 				}}
 			/>
 		</Stack>

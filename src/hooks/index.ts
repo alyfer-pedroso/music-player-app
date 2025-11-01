@@ -22,3 +22,6 @@ export * from './useArtistDetails';
 export * from './useSearchPlaylists';
 export * from './usePlaylists';
 export * from './usePlaylistDetails';
+export * from './usePlayerFavorite';
+export * from './useAddToPlaylist';
+export * from './useTrackShortcutMenu';

@@ -3,4 +3,5 @@ import { Playlist } from '@/helpers';
 
 export interface PlaylistsListProps extends Partial<FlatListProps<Playlist>> {
 	playlists: Playlist[];
+	onPlaylistPress?: (playlist: Playlist) => void;
 }

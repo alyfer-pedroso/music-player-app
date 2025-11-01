@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 
 import { fontSize } from '@/constants/tokens';
@@ -9,33 +9,42 @@ import { defaultStyles } from '@/styles';
 
 import { PlaylistListItemProps } from './types';
 
-export const PlaylistListItem: FC<PlaylistListItemProps> = ({ playlist }) => {
-	return (
-		<Link
-			href={{
-				pathname: '/(tabs)/playlists/[name]',
-				params: { name: playlist.name },
-			}}
-			asChild
-		>
-			<TouchableHighlight activeOpacity={0.8}>
-				<View style={styles.playlistItemContainer}>
-					<View>
-						<Image
-							source={{ uri: playlist.artworkPreview }}
-							priority="normal"
-							style={styles.playlistArtworkImage}
-						/>
-					</View>
+export const PlaylistListItem: FC<PlaylistListItemProps> = ({
+	playlist,
+	onPlaylistPress,
+}) => {
+	const router = useRouter();
 
-					<View style={{ width: '100%' }}>
-						<Text numberOfLines={10} style={styles.playlistNameText}>
-							{playlist.name}
-						</Text>
-					</View>
+	const handleOnPress = () => {
+		if (onPlaylistPress !== undefined) {
+			onPlaylistPress(playlist);
+			return;
+		}
+
+		router.push({
+			pathname: '/(tabs)/playlists/[p_name]',
+			params: { p_name: playlist.name },
+		});
+	};
+
+	return (
+		<TouchableHighlight activeOpacity={0.8} onPress={handleOnPress}>
+			<View style={styles.playlistItemContainer}>
+				<View>
+					<Image
+						source={{ uri: playlist.artworkPreview }}
+						priority="normal"
+						style={styles.playlistArtworkImage}
+					/>
 				</View>
-			</TouchableHighlight>
-		</Link>
+
+				<View style={{ width: '100%' }}>
+					<Text numberOfLines={10} style={styles.playlistNameText}>
+						{playlist.name}
+					</Text>
+				</View>
+			</View>
+		</TouchableHighlight>
 	);
 };
 

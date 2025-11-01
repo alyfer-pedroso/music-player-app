@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 
+import { useLibraryStore } from '@/store';
 import { unknownTrackImageUrl } from '@/constants/images';
 import { Playlist } from '@/helpers';
 
@@ -7,6 +8,7 @@ import { useTracks } from '../useTracks';
 
 export function usePlaylists() {
 	const tracks = useTracks();
+	const { addToPlaylist } = useLibraryStore();
 
 	const playlists = useMemo(
 		() =>
@@ -35,5 +37,5 @@ export function usePlaylists() {
 		[tracks],
 	);
 
-	return { playlists };
+	return { playlists, addToPlaylist };
 }
