@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "music-player",
-		"slug": "music-player",
+		"name": "aura-player",
+		"slug": "aura-player",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
