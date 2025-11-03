@@ -1,9 +1,7 @@
-import { Image } from 'react-native';
+const unknownArtistImage =
+	'https://res.cloudinary.com/dxih9geiy/image/upload/v1762123891/unknownartist_xeulid.jpg';
+const unknownTrackImage =
+	'https://res.cloudinary.com/dxih9geiy/image/upload/v1762123891/unknowntrack_dvvcgr.png';
 
-import unknownArtistImage from '@/assets/unknownartist.png';
-import unknownTrackImage from '@/assets/unknowntrack.png';
-
-export const unknownArtistImageUrl =
-	Image.resolveAssetSource(unknownArtistImage).uri;
-export const unknownTrackImageUrl =
-	Image.resolveAssetSource(unknownTrackImage).uri;
+export const unknownArtistImageUrl = unknownArtistImage;
+export const unknownTrackImageUrl = unknownTrackImage;
