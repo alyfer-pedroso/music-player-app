@@ -20,12 +20,10 @@ export const TrackShortcutsMenu: FC<TrackShortcutsMenuProps> = ({
 				{
 					id: isFavorite ? 'remove-from-favorite' : 'add-to-favorite',
 					title: isFavorite ? 'Remove from favorite' : 'Add to favorite',
-					image: isFavorite ? 'ic_menu_favorite' : 'ic_menu_favorite_border',
 				},
 				{
 					id: inPlaylist ? 'remove-from-playlist' : 'add-to-playlist',
 					title: inPlaylist ? 'Remove from playlist' : 'Add to playlist',
-					image: inPlaylist ? 'ic_menu_remove' : 'ic_menu_add',
 				},
 			]}
 		>
