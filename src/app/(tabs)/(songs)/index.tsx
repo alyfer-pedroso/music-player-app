@@ -3,15 +3,14 @@ import { ScrollView, View } from 'react-native';
 import { useSongs } from '@/hooks';
 import { generateTracksListId } from '@/functions';
 import { screenPadding } from '@/constants/tokens';
-import { SearchInput, TracksList } from '@/components';
-import { defaultStyles } from '@/styles';
+import { PageWrapper, SearchInput, TracksList } from '@/components';
 import { QueueIds } from '@/helpers';
 
 const SongsScreen = () => {
 	const { states, actions, library } = useSongs();
 
 	return (
-		<View style={defaultStyles.container}>
+		<PageWrapper title="Songs">
 			<View
 				style={{
 					paddingHorizontal: screenPadding.horizontal,
@@ -33,7 +32,7 @@ const SongsScreen = () => {
 					tracks={library}
 				/>
 			</ScrollView>
-		</View>
+		</PageWrapper>
 	);
 };
 

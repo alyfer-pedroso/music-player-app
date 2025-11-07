@@ -2,15 +2,14 @@ import { ScrollView, View } from 'react-native';
 
 import { usePlaylists, useSearchPlaylists } from '@/hooks';
 import { screenPadding } from '@/constants/tokens';
-import { PlaylistsList, SearchInput } from '@/components';
-import { defaultStyles } from '@/styles';
+import { PageWrapper, PlaylistsList, SearchInput } from '@/components';
 
 const PlaylistsScreen = () => {
 	const { playlists: data } = usePlaylists();
 	const { states, actions, playlists } = useSearchPlaylists(data);
 
 	return (
-		<View style={defaultStyles.container}>
+		<PageWrapper title="Playlists">
 			<View
 				style={{
 					paddingHorizontal: screenPadding.horizontal,
@@ -29,7 +28,7 @@ const PlaylistsScreen = () => {
 			>
 				<PlaylistsList playlists={playlists} />
 			</ScrollView>
-		</View>
+		</PageWrapper>
 	);
 };
 

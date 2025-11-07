@@ -1,7 +1,6 @@
 import { View } from 'react-native';
 import { Stack } from 'expo-router';
 
-import { StackScreenWithSearchBar } from '@/constants/layout';
 import { defaultStyles } from '@/styles';
 
 const FavoritesScreenLayout = () => {
@@ -10,7 +9,7 @@ const FavoritesScreenLayout = () => {
 			<Stack>
 				<Stack.Screen
 					name="index"
-					options={{ ...StackScreenWithSearchBar, headerTitle: 'Favorites' }}
+					options={{ headerShown: false, headerTitle: 'Favorites' }}
 				/>
 			</Stack>
 		</View>

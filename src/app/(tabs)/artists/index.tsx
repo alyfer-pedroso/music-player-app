@@ -2,15 +2,14 @@ import { ScrollView, View } from 'react-native';
 
 import { useArtists, useSearchArtists } from '@/hooks';
 import { screenPadding } from '@/constants/tokens';
-import { ArtistsList, SearchInput } from '@/components';
-import { defaultStyles } from '@/styles';
+import { ArtistsList, PageWrapper, SearchInput } from '@/components';
 
 const ArtistsScreen = () => {
 	const artistsData = useArtists();
 	const { states, actions, artists } = useSearchArtists(artistsData);
 
 	return (
-		<View style={defaultStyles.container}>
+		<PageWrapper title="Artists">
 			<View
 				style={{
 					paddingHorizontal: screenPadding.horizontal,
@@ -29,7 +28,7 @@ const ArtistsScreen = () => {
 			>
 				<ArtistsList artists={artists} />
 			</ScrollView>
-		</View>
+		</PageWrapper>
 	);
 };
 

@@ -12,3 +12,4 @@ export * from './QueueControls';
 export * from './ArtistsList';
 export * from './PlaylistsList';
 export * from './TrackShortcutsMenu';
+export * from './PageWrapper';
