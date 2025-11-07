@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Tabs } from 'expo-router';
 import { BlurView } from 'expo-blur';
@@ -13,6 +14,8 @@ import { colors, fontSize } from '@/constants/tokens';
 import { FloatingPlayer } from '@/components';
 
 const TabsNavigation = () => {
+	const { bottom } = useSafeAreaInsets();
+
 	return (
 		<>
 			<Tabs
@@ -29,6 +32,8 @@ const TabsNavigation = () => {
 						borderTopRightRadius: 20,
 						borderTopWidth: 0,
 						paddingTop: 8,
+						paddingBottom: bottom,
+						height: 60 + bottom,
 					},
 					tabBarBackground: () => (
 						<BlurView
@@ -91,7 +96,7 @@ const TabsNavigation = () => {
 					position: 'absolute',
 					left: 8,
 					right: 8,
-					bottom: 100,
+					bottom: 100 + bottom / 4,
 				}}
 			/>
 		</>

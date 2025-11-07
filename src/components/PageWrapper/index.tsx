@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { colors } from '@/constants/tokens';
 import { defaultStyles } from '@/styles';
 
@@ -11,8 +13,10 @@ export const PageWrapper: FC<PageWrapperProps> = ({
 	style,
 	title = '',
 }) => {
+	const { top } = useSafeAreaInsets();
+
 	return (
-		<View style={[defaultStyles.container, style]}>
+		<View style={[defaultStyles.container, style, { paddingTop: 12 + top }]}>
 			{!!title && (
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>{title}</Text>
@@ -25,7 +29,6 @@ export const PageWrapper: FC<PageWrapperProps> = ({
 
 const styles = StyleSheet.create({
 	titleContainer: {
-		paddingTop: 35,
 		paddingBottom: 6,
 		paddingHorizontal: 18,
 	},
