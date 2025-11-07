@@ -1,4 +1,8 @@
-import TrackPlayer, { Capability, RepeatMode } from 'react-native-track-player';
+import TrackPlayer, {
+	AppKilledPlaybackBehavior,
+	Capability,
+	RepeatMode,
+} from 'react-native-track-player';
 
 export const setupPlayer = async () => {
 	try {
@@ -12,12 +16,28 @@ export const setupPlayer = async () => {
 				Capability.Pause,
 				Capability.SkipToNext,
 				Capability.SkipToPrevious,
-				Capability.Stop,
+				Capability.SeekTo,
 			],
+
+			compactCapabilities: [
+				Capability.Play,
+				Capability.Pause,
+				Capability.SkipToNext,
+				Capability.SkipToPrevious,
+			],
+
+			android: {
+				appKilledPlaybackBehavior:
+					AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
+			},
+
+			progressUpdateEventInterval: 2,
 		});
 
 		await TrackPlayer.setVolume(0.5);
 		await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+
+		console.log('TrackPlayer configurado com sucesso');
 	} catch (error) {
 		console.log('Error setting up TrackPlayer:', error);
 	}

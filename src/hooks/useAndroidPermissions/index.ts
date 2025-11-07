@@ -49,6 +49,24 @@ export function useAndroidPermissions() {
 				if (notificationPermission !== PermissionsAndroid.RESULTS.GRANTED) {
 					console.warn('Permissão de notificação negada');
 				}
+
+				const postNotificationsPermission = await PermissionsAndroid.request(
+					PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+					{
+						title: 'Permissão de Notificação',
+						message:
+							'O app precisa de permissão para exibir controles de musica na notificação.',
+						buttonNeutral: 'Perguntar depois',
+						buttonNegative: 'Cancelar',
+						buttonPositive: 'OK',
+					},
+				);
+
+				if (
+					postNotificationsPermission !== PermissionsAndroid.RESULTS.GRANTED
+				) {
+					console.warn('Permissão de notificação negada');
+				}
 			}
 
 			setPermissionsGranted(true);

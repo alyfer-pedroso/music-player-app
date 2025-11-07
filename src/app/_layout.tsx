@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import {
 	useAndroidPermissions,
+	useDeepLinking,
 	useLogTrackPlayerState,
 	useSetupTrackPlayer,
 } from '@/hooks';
@@ -16,6 +17,7 @@ SplashScreen.preventAutoHideAsync();
 
 const App = () => {
 	useAndroidPermissions();
+	useDeepLinking();
 
 	const handleTrackPlayerLoaded = useCallback(() => {
 		SplashScreen.hideAsync();
