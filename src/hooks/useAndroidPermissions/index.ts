@@ -34,7 +34,7 @@ export function useAndroidPermissions() {
 			if (Number(Platform.Version) >= 33) {
 				const { PermissionsAndroid } = await import('react-native');
 
-				const notificationPermission = await PermissionsAndroid.request(
+				await PermissionsAndroid.request(
 					PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
 					{
 						title: 'Permissão de Notificação',
@@ -46,11 +46,7 @@ export function useAndroidPermissions() {
 					},
 				);
 
-				if (notificationPermission !== PermissionsAndroid.RESULTS.GRANTED) {
-					console.warn('Permissão de notificação negada');
-				}
-
-				const postNotificationsPermission = await PermissionsAndroid.request(
+				await PermissionsAndroid.request(
 					PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
 					{
 						title: 'Permissão de Notificação',
@@ -61,12 +57,6 @@ export function useAndroidPermissions() {
 						buttonPositive: 'OK',
 					},
 				);
-
-				if (
-					postNotificationsPermission !== PermissionsAndroid.RESULTS.GRANTED
-				) {
-					console.warn('Permissão de notificação negada');
-				}
 			}
 
 			setPermissionsGranted(true);

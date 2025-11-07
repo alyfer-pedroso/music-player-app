@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { Linking } from 'react-native';
-import { useRouter } from 'expo-router';
-import { Event, useTrackPlayerEvents } from 'react-native-track-player';
+import { usePathname, useRouter } from 'expo-router';
 
 export function useDeepLinking() {
 	const router = useRouter();
+	const pathname = usePathname();
 
 	useEffect(() => {
 		const handleDeepLink = (event: { url: string }) => {
 			const url = event.url;
 
-			if (url.includes('/player')) {
+			if (url.includes('/player') && !pathname.includes('/player')) {
 				router.push('/player');
 			}
 		};
@@ -26,11 +26,30 @@ export function useDeepLinking() {
 		return () => {
 			subscription.remove();
 		};
-	}, [router]);
+	}, [router, pathname]);
 
-	useTrackPlayerEvents([Event.RemotePlayId, Event.RemotePause], (event) => {
-		if (event.type === Event.RemotePlayId || event.type === Event.RemotePause) {
-			router.push('/player');
-		}
-	});
+	// useTrackPlayerEvents(
+	// 	[
+	// 		Event.RemotePause,
+	// 		Event.RemotePlay,
+	// 		Event.RemotePrevious,
+	// 		Event.RemoteNext,
+	// 		Event.RemoteStop,
+	// 		Event.RemoteSeek,
+	// 	],
+	// 	async (event) => {
+	// 		const eventActions: Record<typeof event.type, Promise<void>> = {
+	// 			[Event.RemotePlay]: TrackPlayer.play(),
+	// 			[Event.RemotePause]: TrackPlayer.pause(),
+	// 			[Event.RemoteNext]: TrackPlayer.skipToNext(),
+	// 			[Event.RemotePrevious]: TrackPlayer.skipToPrevious(),
+	// 			[Event.RemoteStop]: TrackPlayer.stop(),
+	// 			[Event.RemoteSeek]: TrackPlayer.seekTo(
+	// 				(event as { position: number }).position,
+	// 			),
+	// 		};
+
+	// 		await eventActions[event.type];
+	// 	},
+	// );
 }
