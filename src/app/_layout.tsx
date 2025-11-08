@@ -54,6 +54,15 @@ const RootNavigation = () => {
 			/>
 
 			<Stack.Screen
+				name="notification.click"
+				options={{
+					presentation: 'transparentModal',
+					animation: 'fade',
+					headerShown: false,
+				}}
+			/>
+
+			<Stack.Screen
 				name="(modals)/add-to-playlist"
 				options={{
 					presentation: 'modal',

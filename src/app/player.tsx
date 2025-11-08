@@ -1,16 +1,14 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import Animated from 'react-native-reanimated';
-import { useActiveTrack } from 'react-native-track-player';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureDetector } from 'react-native-gesture-handler';
 
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { useGesturePan, usePlayerBackground, usePlayerFavorite } from '@/hooks';
+import { usePlayer } from '@/hooks';
 import {
 	DismissPlayerSymbol,
 	MovingText,
@@ -24,45 +22,34 @@ import { unknownTrackImageUrl } from '@/constants/images';
 import { defaultStyles, utilsStyles } from '@/styles';
 
 const PlayerScreen: FC = () => {
-	const activeTrack = useActiveTrack();
-
-	const { pan, animatedStyle } = useGesturePan();
-	const { top, bottom } = useSafeAreaInsets();
-
-	const { isFavorite, toggleFavorite } = usePlayerFavorite();
-	const { imageColors } = usePlayerBackground(
-		activeTrack?.artwork ?? unknownTrackImageUrl,
-	);
-
-	const gradientColors = useMemo(() => {
-		if (imageColors?.background && imageColors?.primary) {
-			return [imageColors.background, imageColors.primary] as const;
-		}
-		return [colors.background, colors.background] as const;
-	}, [imageColors]);
+	const { states, actions } = usePlayer();
 
 	return (
-		<GestureDetector gesture={pan}>
-			{!activeTrack ? (
-				<Animated.View style={[animatedStyle]}>
+		<GestureDetector gesture={states.pan}>
+			{!states.activeTrack ? (
+				<Animated.View style={[states.animatedStyle]}>
 					<ActivityIndicator
 						color={colors.icon}
 						style={[defaultStyles.container, { justifyContent: 'center' }]}
 					/>
 				</Animated.View>
 			) : (
-				<Animated.View style={[defaultStyles.container, animatedStyle]}>
-					<LinearGradient style={{ flex: 1 }} colors={gradientColors}>
+				<Animated.View style={[defaultStyles.container, states.animatedStyle]}>
+					<LinearGradient style={{ flex: 1 }} colors={states.gradientColors}>
 						<View style={styles.overlayContainer}>
 							<DismissPlayerSymbol />
 
 							<View
-								style={{ flex: 1, marginTop: top + 70, marginBottom: bottom }}
+								style={{
+									flex: 1,
+									marginTop: states.top + 70,
+									marginBottom: states.bottom,
+								}}
 							>
 								<View style={styles.artworkImageContainer}>
 									<Image
 										source={{
-											uri: activeTrack?.artwork ?? unknownTrackImageUrl,
+											uri: states.activeTrack?.artwork ?? unknownTrackImageUrl,
 										}}
 										priority="high"
 										contentFit="cover"
@@ -82,27 +69,29 @@ const PlayerScreen: FC = () => {
 											>
 												<View style={styles.trackTitleContainer}>
 													<MovingText
-														text={activeTrack?.title ?? ''}
+														text={states.activeTrack?.title ?? ''}
 														animationThreshold={30}
 														style={styles.trackTitleText}
 													/>
 												</View>
 
 												<FontAwesome
-													name={isFavorite ? 'heart' : 'heart-o'}
+													name={states.isFavorite ? 'heart' : 'heart-o'}
 													size={20}
-													color={isFavorite ? colors.primary : colors.icon}
+													color={
+														states.isFavorite ? colors.primary : colors.icon
+													}
 													style={{ marginHorizontal: 14 }}
-													onPress={toggleFavorite}
+													onPress={actions.toggleFavorite}
 												/>
 											</View>
 
-											{activeTrack?.artist && (
+											{states.activeTrack?.artist && (
 												<Text
 													numberOfLines={1}
 													style={[styles.trackArtistText, { marginTop: 6 }]}
 												>
-													{activeTrack?.artist}
+													{states.activeTrack?.artist}
 												</Text>
 											)}
 										</View>
