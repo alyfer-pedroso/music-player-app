@@ -29,6 +29,7 @@ export const setupPlayer = async () => {
 			android: {
 				appKilledPlaybackBehavior:
 					AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
+				alwaysPauseOnInterruption: true,
 			},
 
 			progressUpdateEventInterval: 2,

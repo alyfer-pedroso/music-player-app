@@ -32,6 +32,17 @@
 				"android.permission.POST_NOTIFICATIONS",
 				"android.permission.SYSTEM_ALERT_WINDOW",
 				"com.android.launcher.permission.INSTALL_SHORTCUT"
+			],
+			"intentFilters": [
+				{
+					"action": "VIEW",
+					"data": [
+						{
+							"scheme": "music-player"
+						}
+					],
+					"category": ["BROWSABLE", "DEFAULT"]
+				}
 			]
 		},
 		"web": {
